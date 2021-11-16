@@ -1,4 +1,4 @@
-const transactionsUl = document.querySelector('transactions') 
+const transactionsUl = document.querySelector('#transactions') 
 
 const dummyTransactions = [
     {id: 1, name: 'Bolo de Brigadeiro', amount: -20},
@@ -17,7 +17,14 @@ const addTransactionIntoDOM = transaction =>{
     li.innerHTML = `
     ${transaction.name} <span>${operator} R$ ${amountWithoutOperator}</span><button class="delete-btn">x</button>
     `
-    console.log(li)
-    
+    transactionsUl.append(li)       
 }
-addTransactionIntoDOM(dummyTransactions[0]);
+const updateBalanceValues = () =>{
+    const transactionsAmount = dummyTransactions.map(transaction => transaction.amount)
+    console.log(transactionsAmount)
+}
+const init = () => {
+    dummyTransactions.forEach(addTransactionIntoDOM)
+    updateBalanceValues()
+}
+init()
